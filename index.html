@@ -6,107 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
-        :root{
-            --bg:#0a0a0a;
-            --accent:#00f2ff;
-            --text:#ffffff;
-            --sub:#888;
-        }
+        :root{--bg:#0a0a0a;--accent:#00f2ff;--text:#ffffff;--sub:#888;}
         *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif}
-        body{
-            background:var(--bg);
-            color:var(--text);
-            overflow-x:hidden;
-            perspective:1500px;
-        }
-        header{
-            height:100vh;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            text-align:center;
-            transform-style:preserve-3d;
-            animation:float 6s ease-in-out infinite;
-        }
-        @keyframes float{
-            0%,100%{transform:translateY(0) rotateX(0deg)}
-            50%{transform:translateY(-15px) rotateX(3deg)}
-        }
-        h1{
-            font-size:clamp(2.5rem,6vw,5rem);
-            font-weight:700;
-            letter-spacing:-2px;
-            background:linear-gradient(90deg,var(--accent),#ff00c8);
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-            margin-bottom:1rem;
-        }
-        p.tagline{
-            font-size:1.2rem;
-            color:var(--sub);
-            max-width:700px;
-            margin:0 auto 2.5rem;
-            line-height:1.6;
-        }
-        .buttons{
-            display:flex;
-            gap:1rem;
-            flex-wrap:wrap;
-            justify-content:center;
-        }
-        a.btn{
-            position:relative;
-            padding:.9rem 1.8rem;
-            background:transparent;
-            border:2px solid var(--accent);
-            color:var(--accent);
-            text-decoration:none;
-            font-weight:500;
-            border-radius:30px;
-            transition:.3s;
-            overflow:hidden;
-        }
-        a.btn::before{
-            content:'';
-            position:absolute;
-            inset:0;
-            background:var(--accent);
-            transform:scaleX(0);
-            transform-origin:left;
-            transition:transform .4s ease;
-            z-index:-1;
-        }
-        a.btn:hover{color:var(--bg)}
-        a.btn:hover::before{transform:scaleX(1)}
-        section.lessons{
-            padding:4rem 1rem;
-            max-width:1100px;
-            margin:auto;
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:1.5rem;
-        }
-        .card{
-            background:#111;
-            border:1px solid #222;
-            border-radius:12px;
-            padding:1.5rem;
-            transform:translateY(30px);
-            opacity:0;
-            animation:fadeUp .8s forwards;
-        }
-        @keyframes fadeUp{
-            to{transform:translateY(0);opacity:1}
-        }
+        body{background:var(--bg);color:var(--text);line-height:1.6}
+        header{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem}
+        h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:700;letter-spacing:-2px;background:linear-gradient(90deg,var(--accent),#ff00c8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem}
+        p.tagline{font-size:1.2rem;color:var(--sub);max-width:700px;margin:0 auto 2.5rem}
+        .buttons{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+        a.btn{position:relative;padding:.9rem 1.8rem;border:2px solid var(--accent);color:var(--accent);text-decoration:none;font-weight:500;border-radius:30px;transition:.3s}
+        a.btn:hover{background:var(--accent);color:var(--bg)}
+        section.lessons{padding:4rem 1rem;max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}
+        .card{background:#111;border:1px solid #222;border-radius:12px;padding:1.5rem;opacity:0;transform:translateY(20px);transition:all .5s}
+        .card.show{opacity:1;transform:translateY(0)}
         .card h3{margin-bottom:.5rem;color:var(--accent)}
         .card a{color:var(--sub);text-decoration:none;font-size:.9rem}
         .card a:hover{color:var(--accent)}
-        footer{
-            text-align:center;
-            padding:2rem 0;
-            font-size:.8rem;
-            color:var(--sub);
-        }
+        footer{text-align:center;padding:2rem 0;font-size:.8rem;color:var(--sub)}
     </style>
 </head>
 <body>
@@ -114,11 +29,11 @@
     <div>
         <h1>Baron / 1337</h1>
         <p class="tagline">
-            Cyber-security & bug-bounty hunter; 32 bugs validated across Bugcrowd, HackerOne, Intigriti.  
-            Access-control snaps rated P1 giving org-wide takeover, SSRF tunnels P1 leaking cloud keys and metadata,  
-            GraphQL IDOR P1 turning any user into admin, parser tricks P1 landing RCE via file upload,  
-            relay misroutes P2 exposing cross-app tokens, JWT key-swap P2 hijacking accounts,  
-            open-redirect chains P3 weaponising phishing, cache poison P3 planting persistent XSS,  
+            Cyber-security & bug-bounty hunter; 32 bugs validated across Bugcrowd, HackerOne, Intigriti.
+            Access-control snaps rated P1 giving org-wide takeover, SSRF tunnels P1 leaking cloud keys and metadata,
+            GraphQL IDOR P1 turning any user into admin, parser tricks P1 landing RCE via file upload,
+            relay misroutes P2 exposing cross-app tokens, JWT key-swap P2 hijacking accounts,
+            open-redirect chains P3 weaponising phishing, cache poison P3 planting persistent XSS,
             race windows P3 forcing one-click payouts, shadow endpoints P4 bleeding sensitive infos.
         </p>
         <div class="buttons">
@@ -132,40 +47,21 @@
 </header>
 
 <section class="lessons">
-    <div class="card" style="animation-delay:.1s">
-        <h3>GraphQL IDOR</h3>
-        <a href="https://graphql.org/learn/" target="_blank" rel="noopener">Learn syntax →</a><br>
-        <a href="https://github.com/doyensec/graphql-attack" target="_blank" rel="noopener">Audit checklist →</a>
-    </div>
-    <div class="card" style="animation-delay:.2s">
-        <h3>SSRF Mastery</h3>
-        <a href="https://portswigger.net/web-security/ssrf" target="_blank" rel="noopener">PortSwigger labs →</a><br>
-        <a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Request%20Forgery" target="_blank" rel="noopener">Payloads →</a>
-    </div>
-    <div class="card" style="animation-delay:.3s">
-        <h3>Access-Control Breaks</h3>
-        <a href="https://owasp.org/www-project-top-ten/2017/A5_2017-Broken_Access_Control" target="_blank" rel="noopener">OWASP Top-10 →</a><br>
-        <a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Access_Control_Cheat_Sheet.md" target="_blank" rel="noopener">Cheat-sheet →</a>
-    </div>
-    <div class="card" style="animation-delay:.4s">
-        <h3>JWT Hijacks</h3>
-        <a href="https://jwt.io/introduction" target="_blank" rel="noopener">JWT.io →</a><br>
-        <a href="https://github.com/ticarpi/jwt_tool" target="_blank" rel="noopener">jwt_tool →</a>
-    </div>
-    <div class="card" style="animation-delay:.5s">
-        <h3>Cache Poison</h3>
-        <a href="https://portswigger.net/research/web-cache-entanglement" target="_blank" rel="noopener">Research paper →</a><br>
-        <a href="https://github.com/GrrrDog/Acunetix-PoCs" target="_blank" rel="noopener">PoC repo →</a>
-    </div>
-    <div class="card" style="animation-delay:.6s">
-        <h3>Race Conditions</h3>
-        <a href="https://portswigger.net/web-security/race-conditions" target="_blank" rel="noopener">Lab →</a><br>
-        <a href="https://github.com/PortSwigger/turbo-intruder" target="_blank" rel="noopener">Turbo Intruder →</a>
-    </div>
+    <div class="card"><h3>GraphQL IDOR</h3><a href="https://graphql.org/learn/" target="_blank" rel="noopener">Learn syntax →</a><br><a href="https://github.com/doyensec/graphql-attack" target="_blank" rel="noopener">Audit checklist →</a></div>
+    <div class="card"><h3>SSRF Mastery</h3><a href="https://portswigger.net/web-security/ssrf" target="_blank" rel="noopener">PortSwigger labs →</a><br><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Server%20Side%20Request%20Forgery" target="_blank" rel="noopener">Payloads →</a></div>
+    <div class="card"><h3>Access-Control Breaks</h3><a href="https://owasp.org/www-project-top-ten/2017/A5_2017-Broken_Access_Control" target="_blank" rel="noopener">OWASP Top-10 →</a><br><a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Access_Control_Cheat_Sheet.md" target="_blank" rel="noopener">Cheat-sheet →</a></div>
+    <div class="card"><h3>JWT Hijacks</h3><a href="https://jwt.io/introduction" target="_blank" rel="noopener">JWT.io →</a><br><a href="https://github.com/ticarpi/jwt_tool" target="_blank" rel="noopener">jwt_tool →</a></div>
+    <div class="card"><h3>Cache Poison</h3><a href="https://portswigger.net/research/web-cache-entanglement" target="_blank" rel="noopener">Research paper →</a><br><a href="https://github.com/GrrrDog/Acunetix-PoCs" target="_blank" rel="noopener">PoC repo →</a></div>
+    <div class="card"><h3>Race Conditions</h3><a href="https://portswigger.net/web-security/race-conditions" target="_blank" rel="noopener">Lab →</a><br><a href="https://github.com/PortSwigger/turbo-intruder" target="_blank" rel="noopener">Turbo Intruder →</a></div>
 </section>
 
-<footer>
-    &copy; 2025 Baron / 1337 – no CVEs left behind.
-</footer>
+<footer>&copy; 2025 Baron / 1337 – no CVEs left behind.</footer>
+
+<script>
+// simple fade-in for cards
+const cards=document.querySelectorAll('.card');
+const observer=new IntersectionObserver((els)=>els.forEach(e=>e.target.classList.toggle('show',e.isIntersecting)),{threshold:.2});
+cards.forEach(c=>observer.observe(c));
+</script>
 </body>
 </html>
